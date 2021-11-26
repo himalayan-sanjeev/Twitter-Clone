@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_tweet, only: %i[ edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   
 
@@ -12,6 +12,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    @tweet= Tweet.find(params[:id])
+    @comments= Comment.where(tweet_id: @tweet).order("created_at DESC")
   end
 
   # GET /tweets/new
