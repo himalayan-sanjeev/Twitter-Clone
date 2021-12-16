@@ -1,13 +1,19 @@
 require 'rails_helper'
 
+
 RSpec.feature "Tweet Features", type: :feature do
     context 'create new tweet' do 
         before(:each) do
-            visit new_tweet_path 
+            if user_signed_in?
+                visit new_tweet_path 
+            else
+                new_user_session_path	
+                let!(:user) {User.create!(name: 'sanjeev', username:'sanjeev1', email:"sanjeev111@gmail.com ",password: '12345678')}
+            end
         end
         scenario "should be successful" do 
             within('form') do
-                fill_in('Tweeet', with: 'this is sample tweet ')
+                fill_in('Tweet', with: 'this is sample tweet ')
             end
             click_button 'Create Tweet'
             expect(page).to have_content "Tweet was posted successfully !"
@@ -20,15 +26,21 @@ RSpec.feature "Tweet Features", type: :feature do
     end
 
     context 'update tweet' do 
+        let!(:tweet) {Tweet.create!(id: 6,user_id: 3, tweet:"this is sample tweet")}
+
         before(:each) do
-          visit edit_tweet_path(tweet)
+            if user_signed_in?
+              visit edit_tweet_path(tweet)
+            end 
+
+            
         end
 
         scenario "should be successful" do 
             within('form') do
               fill_in('Tweet', with: 'this is sample tweet')
             end
-            
+
             click_button 'Update Tweet'
             expect(page).to have_content "Tweet was edited successfully !"
         end
@@ -44,10 +56,10 @@ RSpec.feature "Tweet Features", type: :feature do
 
     context 'destroy tweet' do
       scenario "should be successful" do
-        tweet= Tweet.create!(tweet:"sample tweet !")
+        let!(:tweet) {Tweet.create!(id: 6,user_id: 3, tweet:"this is sample tweet")}
         visit tweets_path
         accept_confirm do 
-            expect { click_link "Destroy" }.to change(Tweet, :count).by(-1)
+            click_link "Destroy"
           end 
           expect(page).to have_content "Tweet was deleted successfully !"
       end

@@ -11,7 +11,7 @@ RSpec.feature "Users Features", type: :feature  do
             fill_in('Name', with: 'danphe software')
             fill_in('Username', with: 'danphe1')
             fill_in('Email', with: 'danphe.software@example.com')
-            fill_in('Password', with: password)
+            fill_in('Password', with: '123456')
           end
           click_button 'Create User'
           expect(page).to have_content "User was created successfully !"
@@ -26,6 +26,8 @@ RSpec.feature "Users Features", type: :feature  do
 
 
   context 'update user' do
+    let!(:user) {User.create!(name: 'sanjeev', username:'sanjeev1', email:"sanjeev111@gmail.com ",password: '12345678')}
+
     before(:each) do
         visit edit_user_path(user)
     end
@@ -35,7 +37,7 @@ RSpec.feature "Users Features", type: :feature  do
             fill_in('Name', with: 'danphe software')
             fill_in('Username', with: 'danphe1')
             fill_in('Email', with: 'danphe.software@example.com')
-            fill_in('Password', with: password)
+            fill_in('Password', with: '123456')
           end
           click_button 'Update User'
           expect(page).to have_content "User was updated successfully !"
