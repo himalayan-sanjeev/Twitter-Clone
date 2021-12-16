@@ -4,16 +4,14 @@ require 'rails_helper'
 RSpec.feature "Tweet Features", type: :feature do
     context 'create new tweet' do 
         before(:each) do
-            if user_signed_in?
-                visit new_tweet_path 
-            else
-                new_user_session_path	
-                let!(:user) {User.create!(name: 'sanjeev', username:'sanjeev1', email:"sanjeev111@gmail.com ",password: '12345678')}
-            end
+            user= User.create!(name: 'sanjeev', username:'sanjeev12', email:"sanjeev111222333@gmail.com ",encrypted_password: '12345678')
+            login_as(user)
+            visit new_tweet_path 
         end
         scenario "should be successful" do 
             within('form') do
                 fill_in('Tweet', with: 'this is sample tweet ')
+
             end
             click_button 'Create Tweet'
             expect(page).to have_content "Tweet was posted successfully !"
