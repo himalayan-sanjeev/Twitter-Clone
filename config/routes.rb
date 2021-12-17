@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
   
   resources :tweets do
-    resources :comments   
+    resources :comments, {:action=>"new", :controller=>"comments"}   
   end
 
   resources :likes, only: [:create, :destroy]

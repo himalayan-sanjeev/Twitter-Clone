@@ -1,13 +1,22 @@
 require 'rails_helper'
 
 RSpec.feature "Comment Features", type: :feature do
+
     context 'create new comment' do 
+        let(:user) {User.create!(name: 'sanjeev', username:"sanjeev#{rand(11112)}", email:"sanjeev111222#{rand(1233)}@gmail.com ",password: '12345678')}
+        let(:tweet) {Tweet.create!(id: 6,user: user, tweet:"this is sample tweet")}
         before(:each) do
-            visit new_tweet_comment_path
+            visit new_user_session_path
+            fill_in('Email', with: user.email)
+            fill_in('Password', with: user.password)    
+            click_on("Log in")
         end
+        
         scenario "should be successful" do 
+            visit tweet_comments_path(tweet)
+
             within('form') do
-                fill_in('Comment', with: 'this is sample comment ')
+                fill_in('content', with: 'this is sample comment ')
             end
 
             click_button 'Create Comment'
