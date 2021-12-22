@@ -3,13 +3,23 @@ require 'rails_helper'
 RSpec.feature "Comment Features", type: :feature do
 
     context 'create new comment' do 
-        let(:user) {User.create!(name: 'sanjeev', username:"sanjeev#{rand(11112)}", email:"sanjeev111222#{rand(1233)}@gmail.com ",password: '12345678')}
-        let(:tweet) {Tweet.create!(id: 6,user: user, tweet:"this is sample tweet")}
+        # let!(:user) {User.create!(name: 'sanjeev', username:"sanjeev#{rand(11112)}", email:"sanjeev111222#{rand(1233)}@gmail.com ",password: '12345678')}
+        # let!(:tweet) {Tweet.create!(id: 6,user: user, tweet:"this is sample tweet")}
         before(:each) do
+            visit new_user_registration_path 
+            user = FactoryBot.create(:user) 
+            
             visit new_user_session_path
-            fill_in('Email', with: user.email)
-            fill_in('Password', with: user.password)    
-            click_on("Log in")
+            sign_in user
+
+            visit new_tweet_path
+            tweet = FactoryBot.create(:tweet)
+
+
+            # visit new_user_session_path
+            # fill_in('Email', with: user.email)
+            # fill_in('Password', with: user.password)    
+            # click_on("Log in")
         end
         
         scenario "should be successful" do 
@@ -54,7 +64,7 @@ RSpec.feature "Comment Features", type: :feature do
 
     context 'destroy comment' do
       scenario "should be successful" do
-        comment= Comment.create!(user_id:3, tweet_id:3,content:"sample comment !")
+        comment= FactoryBot.create(:comment)
         visit tweet_comments_path(tweet)
         accept_confirm do 
             click_link "Destroy"

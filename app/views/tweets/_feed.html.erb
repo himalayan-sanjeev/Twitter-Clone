@@ -28,7 +28,6 @@
 					
 					<div class="level ">
 					<small><%= tweet.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
-		
 			
 				<div class="level-right">
      				<% if user_signed_in? && current_user.id == tweet.user_id %>
@@ -49,26 +48,25 @@
 			 
   			<nav class="level ">
   				<div class="level-left is-mobile">
-					<p class="text is-6">5.6M</p>
+					<p class="text is-6">5.6K</p>
   					<%= link_to tweet, class: "level-item" do %>
   					  <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
   					<% end %>
             <% if user_signed_in? %>
-					<p class="text is-6">1.2M</p>  					  
+					<p class="text is-6">3.2K</p>  					  
 				    <%= link_to tweet, class: "level-item" do %>
 						<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
   					<% end %>
-					<p class="text is-6">965K</p>
+					<p class="text is-6">960</p>
                     <%= link_to tweet, class: "level-item" do %>
   					  <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
   					<% end %>
-					<p class="text is-6">512K</p>
+					<p class="text is-6">50</p>
                     <%= link_to tweet, class: "level-item" do %>
   					  <span class="icon"><i class="fa fa-retweet" aria-hidden="true"></i></span>
   					<% end %>
 		<% end %>
 
-   
 
   				</div>
   			</nav>

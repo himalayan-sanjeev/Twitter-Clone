@@ -1,0 +1,45 @@
+<div class="column ">
+<%= link_to 'Back', tweet_path(@tweet) %>
+
+  <div class="box">
+  	<article class="media">
+
+  		<div class="media-left">
+  			<figure class="image is-64x64">
+  				<%= gravatar_image_tag(@comment.user.email, size: 64, alt: @comment.user.name) %>
+  			</figure>
+  		</div>
+
+  		<div class="media-content">
+  			<div class="content">
+  			    	<strong><%= @comment.user.name %></strong><br />
+  				    <small>@<%= @comment.user.username %></small> 
+  				    <span> . </span><small><%= @comment.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
+              <br/><hr>
+  				<p><%= @comment.content %></p>
+  			</div>
+
+            <% if user_signed_in? && current_user.id == @comment.user_id %>
+                <nav class="box">
+                        <div class="level is-mobile">
+                            <%= link_to tweet_path(@tweet), class: "level-item" do %>
+                            <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            <% end %>
+                            
+                            <%= link_to edit_tweet_comment_path(@tweet), class: "level-item" do %>
+                            <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <% end %>
+
+                            <%= link_to @comment, method: :delete, data: { confirm: "Are you sure you want to delete this tweeet?" } do %>
+                            <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                            <% end %>
+
+                        </div>
+                </nav>
+            <% end %>
+
+     	</div>
+    </article>
+
+  </div>
+</div>
