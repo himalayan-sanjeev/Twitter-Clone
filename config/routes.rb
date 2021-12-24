@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
-  
-  # resources :tweets do
-  #   resources :comments
-  # end
 
-   
   resources :tweets do
     resources :comments
   end
 
-  # resources :comments
+  resources :profiles
 
 
   resources :likes, only: [:create, :destroy]
@@ -18,3 +13,5 @@ Rails.application.routes.draw do
   root 'tweets#index'
 
 end
+
+

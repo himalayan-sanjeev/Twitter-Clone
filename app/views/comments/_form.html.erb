@@ -1,7 +1,7 @@
 <div class="column ">
   <div class="box">
 
-      <%= simple_form_for([@tweet,@tweet.comments.build]) do |f| %>
+      <%= simple_form_for([@tweet,@tweet.comments.build], remote: false)  do |f| %>
       <%= f.error_notification %>
       <div class="field">
         <div class="control">
@@ -15,4 +15,5 @@
   </div>
 </div>
 
-
+      
+<%# <%= simple_form_for([@tweet,@comment]) do |f| %> 

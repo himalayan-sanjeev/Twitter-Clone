@@ -19,24 +19,20 @@
   				<p><%= @comment.content %></p>
   			</div>
 
-            <% if user_signed_in? && current_user.id == @comment.user_id %>
-                <nav class="box">
+             <% if user_signed_in? %> 
+                  <nav class="box">
                         <div class="level is-mobile">
-                            <%= link_to tweet_path(@tweet), class: "level-item" do %>
-                            <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
-                            <% end %>
-                            
-                            <%= link_to edit_tweet_comment_path(@tweet), class: "level-item" do %>
-                            <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            <% end %>
+                          <% if current_user.id == @tweet.user_id  %>  
+                                <%= button_to "Hide", tweet_path(@tweet), class: "hide_btn", remote: true %>
+                                <%= button_to "Remove", tweet_comment_path(@tweet,@comment), method: :delete, class:"remove_btn" ,data: { confirm: "Are you sure you want to delete this comment?"} , remote: true %>
+                          <% end %>
+                              <% if current_user.id == @comment.user_id %>
+                                  <%= button_to "Edit", edit_tweet_comment_path(@tweet, @comment),class:"edit_btn", remote: true %>
+                              <% end %>
+                        <% end %>
 
-                            <%= link_to @comment, method: :delete, data: { confirm: "Are you sure you want to delete this tweeet?" } do %>
-                            <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                            <% end %>
                         </div>
-                </nav>
-            <% end %>
-
+                  </nav>
      	</div>
     </article>
 

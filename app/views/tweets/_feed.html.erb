@@ -13,8 +13,8 @@
   <% end %>
 
 
-<% @tweets.each do | tweet | %>
-  <div class="box">
+ <% @tweets.each do | tweet | %>
+   <div class="box">
   	<article class="media">
   		<div class="media-left">
   			<figure class="image is-64x64">
@@ -25,7 +25,6 @@
   			<div class="content">
 					<strong><%= tweet.user.name %></strong><br />
 					<small>@<%= tweet.user.username %></small>
-					
 					<div class="level ">
 					<small><%= tweet.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
 			
@@ -39,7 +38,7 @@
 						<% end %>
 					<% end %>
 				</div>
-</div>
+					</div>
 				<hr>
   				<p><%= tweet.tweet %></p>
 				  <hr>
@@ -49,29 +48,28 @@
   			<nav class="level ">
   				<div class="level-left is-mobile">
 					<p class="text is-6">5.6K</p>
-  					<%= link_to tweet, class: "level-item" do %>
-  					  <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
-  					<% end %>
-            <% if user_signed_in? %>
-					<p class="text is-6">3.2K</p>  					  
-				    <%= link_to tweet, class: "level-item" do %>
-						<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
-  					<% end %>
-					<p class="text is-6">960</p>
-                    <%= link_to tweet, class: "level-item" do %>
-  					  <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
-  					<% end %>
-					<p class="text is-6">50</p>
-                    <%= link_to tweet, class: "level-item" do %>
-  					  <span class="icon"><i class="fa fa-retweet" aria-hidden="true"></i></span>
-  					<% end %>
-		<% end %>
-
-
+						<%= link_to tweet, class: "level-item" do %>
+						<span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
+						<% end %>
+            		<% if user_signed_in? %>
+						<p class="text is-6">3.2K</p>  					  
+						<%= link_to tweet, class: "level-item" do %>
+							<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
+						<% end %>
+						<p class="text is-6">960</p>
+						<%= link_to tweet, class: "level-item" do %>
+						<span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+						<% end %>
+						<p class="text is-6">50</p>
+						<%= link_to tweet, class: "level-item" do %>
+						<span class="icon"><i class="fa fa-retweet" aria-hidden="true"></i></span>
+						<% end %>
+					<% end %>
   				</div>
   			</nav>
+
   		</div>
   	</article>
   </div>
-<% end %>
+ <% end %>
 </div>
