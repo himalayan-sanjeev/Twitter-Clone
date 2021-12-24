@@ -1,4 +1,4 @@
- 
+ <% if not comment.hidden %>
     <article class="media", id="comment_<%= comment.id %>">  
       <figure class="media-left">
         <p class="image is-64x64">
@@ -24,3 +24,5 @@
             <% end %>
       <% end %>
     </article>
+  
+  <% end %>

@@ -1,5 +1,5 @@
-  $(document).ready(function(){
+$(document).ready(function(){
   $(".hide_btn").click(function(){
-    $(".media").hide("#comment_<%= @comment %>");
+    $("<%= @comment.hidden %>").toggle();
   });
 });
