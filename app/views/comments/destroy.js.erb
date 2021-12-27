@@ -1,6 +1,5 @@
 $(document).ready(function(){
-  $(".remove_btn").click(function(){
-      debugger
+  $("#remove_btn").click(function(){
     $("article").remove("#comment_<%= @comment %>");
   });
 });

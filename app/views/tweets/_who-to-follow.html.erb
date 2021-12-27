@@ -1,57 +1,29 @@
 <div class="column">
 	<nav class="panel">
 		<p class="panel-heading">Who to Follow</p>
-	
-	<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>Ram Prasad</strong>
-						<small>@rampsd</small>
-					</p>
+
+		<% @users.each do | user | %>
+		  <div class="panel-block">
+			<article class="media">
+				<div class="media-left">
+					<figure class="image is-32x32">
+						<img src="https://bulma.io/images/placeholders/64x64.png">
+					</figure>
 				</div>
-			</div>
-		</article>
-	</div>
-		<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>Hari Bahadur</strong>
-						<small>@abdul</small>
-					</p>
+				<div class="media-content">
+					<div class="content">
+						<p>
+							<strong><%= link_to user.name, user_path(user) %></strong><br />
+							<small>@<%= user.username %> </small>
+							<%= link_to "Follow", user_path(user), class: "button is-info" %>
+						</p>
+					</div>	
 				</div>
-			</div>
-		</article>
-	</div>
-		<div class="panel-block">
-		<article class="media">
-			<div class="media-left">
-				<figure class="image is-32x32">
-					<img src="https://bulma.io/images/placeholders/64x64.png">
-				</figure>
-			</div>
-			<div class="media-content">
-				<div class="content">
-					<p>
-						<strong>Pasang Dorje</strong>
-						<small>@pgolpa</small>
-					</p>
-				</div>
-			</div>
-		</article>
-	</div>
+			</article>
+		  </div>
+		<% end %>
 	</nav>
+		<div class="is-pulled-right is-success">
+			<%= link_to "See more people to follow", users_path, class: "button is-link" %>
+		</div>
 </div>

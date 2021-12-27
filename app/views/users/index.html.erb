@@ -1,19 +1,32 @@
-<div class="column ">
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+  
+  <p class="panel-heading">Twitter Users</p>
+  <% @users.each do | user | %>
 	<nav class="panel">
-		<p class="panel-heading">Profile</p>
 		<div class="panel-block">
 			<article class="media">
 				<div class="media-left">
 					<figure class="image is-64x64">
-						<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+						<%= gravatar_image_tag(user.email, size: 64, alt: user.name) %>
 					</figure>
 				</div>
 				<div class="media-content">
 					<div class="content">
 						<p>
-							<strong><%= current_user.name %></strong><br />
-							<small>@<%= current_user.username %></small>
+							<strong><%= user.name %></strong><br />
+							<small>@<%= user.username %></small>
 						</p>
+					</div>
+				</div>
+			</article>
+			<article class="media">
+				<div class="media-right">
+				    <div class="is-pulled-right">
+					<% if not user.id == current_user.id %>
+			            <%= link_to "Follow", user_path(user), class: "button is-info" %>
+					<% end %>
+						<%= link_to "View Tweets", user_path(user), class: "button is-info" %>
 					</div>
 				</div>
 			</article>
@@ -24,7 +37,7 @@
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Tweets</p>
-						<p class="title is-6"><%= current_user.tweets.count %></p>
+						<p class="title is-6"><%= user.tweets.count %></p>
 					</div>
 				</div>
 				<div class="level-item has-centered-text">
@@ -43,6 +56,6 @@
 		</div>
 	</nav>
 
-      	<p><%= current_user.tweet %></p>
-
+<% end %>
+</div>
 </div>

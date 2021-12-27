@@ -1,15 +1,10 @@
-<div class="column is-half">
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+
   <% if user_signed_in? %>
-	<article class="media box">
-		<figure class="media-left">
-			<p class="image is-64x64">
-				<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
-			</p>
-		</figure>
-		<div class="media-content">
-			 <%= render 'tweets/form' %>
-		</div>
-	</article>
+	<div class="box is-mobile is-centered ">
+            <%= render 'tweets/profile' %>
+	</div>
   <% end %>
 
 
@@ -23,7 +18,7 @@
   		</div>
   		<div class="media-content">
   			<div class="content">
-					<strong><%= link_to tweet.user.name, user_path(tweet.user) %></strong><br />
+					<strong><%= tweet.user.name %></strong><br />
 					<small>@<%= tweet.user.username %></small>
 					<div class="level ">
 					<small><%= tweet.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
@@ -47,12 +42,11 @@
 			 
   			<nav class="level ">
   				<div class="level-left is-mobile">
-					<p class="text is-6"> 45 </p>
+					<p class="text is-6">5.6K</p>
 						<%= link_to tweet, class: "level-item" do %>
 						<span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
 						<% end %>
             		<% if user_signed_in? %>
-						
 						<p class="text is-6">3.2K</p>  					  
 						<%= link_to tweet, class: "level-item" do %>
 							<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
@@ -73,4 +67,5 @@
   	</article>
   </div>
  <% end %>
+</div>
 </div>

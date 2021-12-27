@@ -1,6 +1,5 @@
 <div class="column ">
 <%= link_to 'Back', tweets_path %>
-
   <div class="box">
   	<article class="media">
   		<div class="media-left">
@@ -34,23 +33,19 @@
 							<span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
 							<% end %>
 
-							<%= link_to @tweet, class: "level-item" do %>
-							<span class="icon"><i class="fa fa-retweet" aria-hidden="true"></i></span>
-							<% end %>
-
 							<%= link_to edit_tweet_path(@tweet), class: "level-item" do %>
 							<span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 							<% end %>
 
 							<%= link_to @tweet, method: :delete, data: { confirm: "Are you sure you want to delete this tweeet?" } do %>
-									<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+							<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
 							<% end %>
 
 						</div>
 				</nav>
 			<% end %>	
-  	</div>
-</article>
+  	    </div>
+    </article>
 
 <strong class="mb-5">Comments</strong><br/>
 <%= @tweet.comments.count %> Comments <hr>

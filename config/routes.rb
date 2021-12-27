@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :profiles
+  resources :users
 
-
-  resources :likes, only: [:create, :destroy]
+  resources :tweets do
+    resources :likes
+  end
+  # resources :likes, only: [:create, :destroy]
 
   root 'tweets#index'
 

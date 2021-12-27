@@ -36,6 +36,13 @@ gem 'gravatar_image_tag'
 
 gem 'devise'
 
+#for view count
+#gem 'impressionist'
+#or
+# gem 'punching_bag'
+
+
+
 # gem 'binding_of_caller', '~> 0.7.2'
 
 group :development, :test do

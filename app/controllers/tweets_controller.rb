@@ -1,22 +1,27 @@
 class TweetsController < ApplicationController
 
-  before_action :set_tweet, only: %i[show edit update destroy ]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-  
 
   # GET /tweets or /tweets.json
   def index
     @tweets = Tweet.all.order("created_at DESC")
     @tweet = Tweet.new 
+    @comments= @tweet.comments
+    @users = User.all
+    # @users = User.where.not(id: current_user.id).limit(10)
+
     # @comment = current_user.comments.build
   end
 
-
   # GET /tweets/1 or /tweets/1.json
   def show
-    @tweet= Tweet.find(params[:id])
-    # @comment = @tweet.comments.build
-    @comments= @tweet.comments.all
+    @comment = Comment.new
+    @comment.tweet_id = @tweet.id
+    @comment.user_id = current_user.id
+    # @tweet= Tweet.find(params[:id])
+    # @comments= @tweet.comments.all
+
     # @comments= Comment.where(tweet_id: @tweet).order("created_at DESC")
   end
 
@@ -59,7 +64,6 @@ class TweetsController < ApplicationController
     end
   end
 
-
   # DELETE /tweets/1 or /tweets/1.json
   def destroy
     @tweet.destroy
@@ -70,12 +74,17 @@ class TweetsController < ApplicationController
     end
   end
 
+  def like
+    @tweet = Tweet.all.find(params[:id])
+    Like.create(user_id: current_user.id, tweet_id:@tweet.id)
+    redirect_to tweet_path(@tweet)
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
       @tweet = Tweet.find(params[:id])
-
     end
 
     # Only allow a list of trusted parameters through.
@@ -84,3 +93,5 @@ class TweetsController < ApplicationController
     end
 
 end
+
+
