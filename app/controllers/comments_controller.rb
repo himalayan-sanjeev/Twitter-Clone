@@ -23,9 +23,6 @@ class CommentsController < ApplicationController
     end
 
     def show
-      # @comment = Comment.find(params[:id])
-      # @tweet= Tweet.find(params[:tweet_id])
-
       @comment = Comment.find params[:id]
       @tweet = @comment.tweet
     end
@@ -55,7 +52,6 @@ class CommentsController < ApplicationController
       end
     end
 
-
   def destroy
     @comment = Comment.find params[:id]
     @tweet = @comment.tweet
@@ -69,7 +65,6 @@ class CommentsController < ApplicationController
       end
     end
   end
-
 
     private
     def set_comment

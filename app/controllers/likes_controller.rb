@@ -27,12 +27,10 @@ class LikesController < ApplicationController
       # @like = current_user.likes.find(params[:id])
       # tweet = @like.tweet
       # @like.destroy
-
       # redirect_to tweet
     end
 
     private
-
     def find_tweet
       @tweet = Tweet.find_by(id: params[:id])
     end

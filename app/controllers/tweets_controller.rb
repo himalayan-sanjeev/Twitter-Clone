@@ -10,7 +10,6 @@ class TweetsController < ApplicationController
     @comments= @tweet.comments
     @users = User.all
     # @users = User.where.not(id: current_user.id).limit(10)
-
     # @comment = current_user.comments.build
   end
 
@@ -80,6 +79,11 @@ class TweetsController < ApplicationController
     redirect_to tweet_path(@tweet)
   end
 
+  def toggle_hidden
+    # @comment.tweet_id = @tweet.id
+    # @comment.user_id = current_user.id
+    @comment.toggle!(:hidden)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -90,7 +94,7 @@ class TweetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tweet_params
       params.require(:tweet).permit(:tweet)
-    end
+    end    
 
 end
 
