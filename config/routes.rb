@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
 
   resources :tweets do
-    resources :comments
+    resources :comments do
+      post 'hide', on: :member
+    end
   end
 
   resources :users

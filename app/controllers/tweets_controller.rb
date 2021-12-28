@@ -15,6 +15,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    # debugger
     @comment = Comment.new
     @comment.tweet_id = @tweet.id
     @comment.user_id = current_user.id
