@@ -1,5 +1,7 @@
-<div class="column ">
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
   <%= link_to 'Back', tweet_path(@tweet) %>
+<div class="panel-block">
 
   <div class="box">
   	<article class="media">
@@ -17,6 +19,13 @@
   				    <span> . </span><small><%= @comment.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
               <br/><hr>
   				<p><%= @comment.content %></p>
+           <figure class="image">
+                <% if @comment.images.attached? %>
+                  <% @comment.images.each do |image| %>
+                    <%= image_tag(image, size: '100%') %>
+                  <% end %>
+                <% end %>
+					  </figure>
   			</div>
               <% if user_signed_in? %> 
                   <nav class="box">
@@ -34,4 +43,7 @@
      	  </div>
     </article>
   </div>
+</div>
+</div>
+</div>
 </div>

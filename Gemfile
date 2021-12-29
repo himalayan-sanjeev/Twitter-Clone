@@ -36,6 +36,8 @@ gem 'gravatar_image_tag'
 
 gem 'devise'
 
+# for image file uploads
+gem 'carrierwave'
 
 
 # gem 'binding_of_caller', '~> 0.7.2'
