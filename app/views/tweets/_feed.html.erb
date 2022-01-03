@@ -1,10 +1,10 @@
 <div class="column is-half">
   <% if user_signed_in? %>
 	<article class="media box">
-		<figure class="media-left">
-			<p class="image is-64x64">
-				<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
-			</p>
+		<figure class="image is-64x64">
+				<% if current_user.profile_pic.attached? %>
+					<%= image_tag(current_user.profile_pic) %>
+				<% end %>
 		</figure>
 		<div class="media-content">
 			 <%= render 'tweets/form' %>
@@ -17,10 +17,12 @@
    <div class="box">
   	<article class="media">
   		<div class="media-left">
-  			<figure class="image is-64x64">
-  				<%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
-  			</figure>
-  		</div>
+			<figure class="image is-128x128">
+				<% if tweet.user.profile_pic.attached? %>
+					<%= image_tag(tweet.user.profile_pic) %>
+				<% end %>
+			</figure>
+		</div>
   		<div class="media-content">
   			<div class="content">
 					<strong><%= link_to tweet.user.name, user_path(tweet.user) %></strong><br />
@@ -41,6 +43,15 @@
 					</div>
 				<hr>
   				<p><%= tweet.tweet %></p>
+				  <div class="media-left">
+					<figure class="image ">
+					  <% if tweet.images.attached? %>
+							<% tweet.images.each do |image| %>
+							   <%= image_tag(image, size: '100%') %>
+							<% end %>
+					  <% end %>
+					</figure>
+				</div>
 				  <hr>
   			</div>
 

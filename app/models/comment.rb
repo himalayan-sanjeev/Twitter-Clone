@@ -4,4 +4,7 @@ class Comment < ApplicationRecord
 
   validates_presence_of :content  
 
+  has_many_attached :images
+
+
 end

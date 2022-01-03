@@ -14,6 +14,22 @@ Rails.application.routes.draw do
   end
   # resources :likes, only: [:create, :destroy]
 
+  # resources :users do
+  #   get :following, :followers
+  # end
+
+  # resources :users do
+  #   member do
+  #     get :following, :followers
+  #   end
+  # end
+
+  resources :users do
+    resources :relationships, only: [:create]    
+  end
+
+  resources :relationships, only: [:destroy]
+
   root 'tweets#index'
 
 end

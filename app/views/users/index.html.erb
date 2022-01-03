@@ -1,20 +1,22 @@
 <div class="columns is-mobile is-centered">
   <div class="column is-half">
   
-  <p class="panel-heading">Twitter Users</p>
+  <p class="panel-heading is-centered">Twitter Users</p>
   <% @users.each do | user | %>
 	<nav class="panel">
 		<div class="panel-block">
 			<article class="media">
 				<div class="media-left">
-					<figure class="image is-64x64">
-						<%= gravatar_image_tag(user.email, size: 64, alt: user.name) %>
+					<figure class="image is-128x128">
+					  <% if user.profile_pic.attached? %>
+						  <%= image_tag(user.profile_pic) %>
+					  <% end %>
 					</figure>
 				</div>
 				<div class="media-content">
 					<div class="content">
 						<p>
-							<strong><%= user.name %></strong><br />
+							<strong><%= link_to user.name, user_path(user) %></strong><br />
 							<small>@<%= user.username %></small>
 						</p>
 					</div>
@@ -33,7 +35,7 @@
 		</div>
 
 		<div class="panel-block">
-			<div class="level is-mobile">
+			<div class="level is-mobile is-centered">
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Tweets</p>
@@ -43,13 +45,13 @@
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Following</p>
-						<p class="title is-6">10</p>
+						<p class="title is-6"><%= user.following.count %></p>
 					</div>
 				</div>
 					<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Followers</p>
-						<p class="title is-6">2.1K</p>
+						<p class="title is-6"><%= user.followers.count %></p>
 					</div>
 				</div>
 			</div>

@@ -5,16 +5,16 @@
 			<article class="media">
 				<div class="media-left">
 					<figure class="image is-128x128">
-						<% if @user.profile_pic.attached? %>
-						<%= image_tag(@user.profile_pic) %>
+						<% if current_user.profile_pic.attached? %>
+						<%= image_tag(current_user.profile_pic) %>
 						<% end %>
 					</figure>
 				</div>
 				<div class="media-content">
 					<div class="content">
 						<p>
-							<strong><%= link_to @user.name, user_path(@user) %></strong><br />
-							<small>@<%= @user.username %></small>
+							<strong><%= link_to current_user.name, user_path(current_user) %></strong><br />
+							<small>@<%= current_user.username %></small>
 						</p>
 					</div>
 				</div>
@@ -25,19 +25,19 @@
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Tweets</p>
-						<p class="title is-6"><%= @user.tweets.count %></p>
+						<p class="title is-6"><%= current_user.tweets.count %></p>
 					</div>
 				</div>
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Following</p>
-						<p class="title is-6"><%= @user.following.count %></p>
+						<p class="title is-6"><%= current_user.following.count %></p>
 					</div>
 				</div>
 					<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Followers</p>
-						<p class="title is-6"><%= @user.followers.count %></p>
+						<p class="title is-6"><%= current_user.followers.count %></p>
 					</div>
 				</div>
 			</div>
