@@ -12,17 +12,14 @@ Rails.application.routes.draw do
   resources :tweets do
     resources :likes
   end
+
+
   # resources :likes, only: [:create, :destroy]
 
-  # resources :users do
-  #   get :following, :followers
-  # end
 
-  # resources :users do
-  #   member do
-  #     get :following, :followers
-  #   end
-  # end
+  # resource :relationships, only: [:create, :destroy]
+
+  
 
   resources :users do
     resources :relationships, only: [:create]    

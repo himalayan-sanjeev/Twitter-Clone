@@ -44,6 +44,7 @@ class TweetsController < ApplicationController
         format.json { render :show, status: :created, location: @tweet }
         format.js
       else
+        
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
@@ -81,8 +82,6 @@ class TweetsController < ApplicationController
   end
 
   def toggle_hidden
-    # @comment.tweet_id = @tweet.id
-    # @comment.user_id = current_user.id
     @comment.toggle!(:hidden)
   end
 

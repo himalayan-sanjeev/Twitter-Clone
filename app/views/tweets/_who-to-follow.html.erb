@@ -2,7 +2,7 @@
 	<nav class="panel">
 		<p class="panel-heading">Who to Follow</p>
 
-		<% @users.each do | user | %>
+		<% @users.each do | user |  %>
 		  <div class="panel-block">
 			<article class="media">
 				<div class="media-left">
@@ -17,9 +17,15 @@
 						<p>
 							<strong><%= link_to user.name, user_path(user) %></strong><br />
 							<small>@<%= user.username %> </small>
-							<%= link_to "Follow", user_relationships_path(user),method: :post, class: "button is-info" unless @relation.present? %>
-							<%= link_to "Unfollow", relationship_path(@relation.id),method: :delete, class: "button is-info" if @relation.present? %>
 
+							<% if user_signed_in? %>
+								<% if current_user.following?(user)%>
+									<%= link_to "Unfollow", user_relationships_path(user),method: :delete, class: "button is-info" %> 
+								<% else %>
+									<%= link_to "Follow", user_relationships_path(user),method: :post, class: "button is-info"  %> 
+								<%# <%= link_to "Follow", relationships_path,method: :post, class: "button is-info"  %> 
+								<% end %>
+							<% end %>
 						</p>
 					</div>	
 				</div>
@@ -31,3 +37,4 @@
 			<%= link_to "See more people to follow", users_path, class: "button is-link" %>
 		</div>
 </div>
+

@@ -7,6 +7,7 @@ class Tweet < ApplicationRecord
   validates_presence_of :tweet
 
   has_many_attached :images
+  # has_many_attached :videos
 
   
   def liked?(user)

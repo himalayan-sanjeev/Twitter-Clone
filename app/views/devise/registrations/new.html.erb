@@ -41,8 +41,9 @@
 		</div>
 
 		<div class="field">
+			<%= f.label :ProfilePic %>
 			<div class="control">
-				<%= f.file_field :profile_pic, required: false, accept: 'image/png, image/gif, image/jpeg', input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>		
+				<%= f.file_field :profile_pic, required: false, accept: 'image/png, image/gif, image/jpeg, image/jpg', input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>		
 			</div>
 		</div>
 

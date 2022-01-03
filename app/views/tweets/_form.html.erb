@@ -9,9 +9,11 @@
       </div>
       <div class="field">
 			<div class="control">
-				<%= f.file_field :images, required: false, accept: 'image/png, image/gif, image/jpeg',multiple: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>		
+      	<%= f.label :Attach_Files %>
+				<%= f.file_field :images,label: "Attach Files", required: false, accept: 'image/png, image/gif, image/jpeg, video/mp4',multiple: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>		
 			</div>
 		</div>
+      
       <%= f.button :submit, class: "button is-info" %>
       <% end %> 
   </div>

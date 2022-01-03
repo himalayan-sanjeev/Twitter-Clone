@@ -42,17 +42,19 @@
 				</div>
 					</div>
 				<hr>
-  				<p><%= tweet.tweet %></p>
-				  <div class="media-left">
+  				<p><%= tweet.tweet %>
+				  <div class="media">
 					<figure class="image ">
 					  <% if tweet.images.attached? %>
 							<% tweet.images.each do |image| %>
 							   <%= image_tag(image, size: '100%') %>
+							   <%# <%= video_tag(url_for(image),controls: true) %> 
 							<% end %>
 					  <% end %>
-					</figure>
+					  </figure>
 				</div>
-				  <hr>
+				</p>
+				<hr>
   			</div>
 
 			 
@@ -63,11 +65,10 @@
 						<span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
 						<% end %>
             		<% if user_signed_in? %>
-						
-						<p class="text is-6">3.2K</p>  					  
-						<%= link_to tweet, class: "level-item" do %>
-							<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
-						<% end %>
+							<p class="text is-6">3.2K</p>  					  
+							<%= link_to tweet,method: "put", class: "level-item" do %>
+								<span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>
+							<% end %>
 						<p class="text is-6"><%= tweet.comments.count %></p>
 						<%= link_to tweet, class: "level-item" do %>
 						<span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>

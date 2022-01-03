@@ -26,7 +26,7 @@
 				<div class="media-right">
 				    <div class="is-pulled-right">
 					<% if not user.id == current_user.id %>
-			            <%= link_to "Follow", user_path(user), class: "button is-info" %>
+			            <%= link_to "Follow", user_relationships_path(user), class: "button is-info" %>
 					<% end %>
 						<%= link_to "View Tweets", user_path(user), class: "button is-info" %>
 					</div>
