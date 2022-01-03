@@ -1,11 +1,17 @@
-<div class="column ">
-<%= link_to 'Back', tweets_path %>
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+  <%= link_to 'Back', tweets_path %>
+
+<div class="panel-block">
+
   <div class="box">
   	<article class="media">
   		<div class="media-left">
   			<figure class="image is-64x64">
-  				<%= gravatar_image_tag(@tweet.user.email, size: 64, alt: @tweet.user.name) %>
-  			</figure>
+				<% if current_user.profile_pic.attached? %>
+					<%= image_tag(current_user.profile_pic) %>
+				<% end %>
+		</figure>
   		</div>
 
   		<div class="media-content">
@@ -15,6 +21,13 @@
   				    <span> . </span><small><%= @tweet.created_at.strftime("%B %d %Y, %l:%M%P") %></small>               
               <br/><hr>
   				<p><%= @tweet.tweet %></p>
+				  <figure class="image">
+					  <% if @tweet.images.attached? %>
+							<% @tweet.images.each do |image| %>
+							   <%= image_tag(image, size: '100%') %>
+							<% end %>
+					  <% end %>
+					</figure>
   			</div>
 
 			<% if user_signed_in? && current_user.id == @tweet.user_id %>
@@ -54,4 +67,6 @@
 <% end %>
 
   </div>
+</div>
+</div>
 </div>

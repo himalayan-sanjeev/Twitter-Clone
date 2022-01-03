@@ -1,20 +1,22 @@
 <div class="columns is-mobile is-centered">
   <div class="column is-half">
+     <%= link_to 'Back', users_path %>
 
   <% if user_signed_in? %>
 	<div class="box is-mobile is-centered ">
-            <%= render 'tweets/profile' %>
+            <%= render 'tweets/profile', user: @user.id %>
 	</div>
   <% end %>
-
-
+<div class="has-text-centered"><strong> <%= @user.name %>'s Tweets :</strong></div>
  <% @tweets.each do | tweet | %>
    <div class="box">
   	<article class="media">
   		<div class="media-left">
-  			<figure class="image is-64x64">
-  				<%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
-  			</figure>
+  			<figure class="image is-128x128">
+				<% if tweet.user.profile_pic.attached? %>
+					<%= image_tag(tweet.user.profile_pic) %>
+				<% end %>
+			</figure>
   		</div>
   		<div class="media-content">
   			<div class="content">

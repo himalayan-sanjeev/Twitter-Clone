@@ -7,4 +7,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @tweets = @user.tweets
   end
+
+  def following
+
+  end
+
+  def follow
+
+  end
+
+  def unfollow
+
+  end
 end
