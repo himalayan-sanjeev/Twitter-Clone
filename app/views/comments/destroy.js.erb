@@ -1,5 +1,2 @@
-$(document).ready(function(){
-  $("#remove_btn").click(function(){
-    $("article").remove("#comment_<%= @comment %>");
-  });
-});
+$("#comment_<%= @comment.id %>").remove();
+
